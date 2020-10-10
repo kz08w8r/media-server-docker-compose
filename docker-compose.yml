@@ -9,13 +9,13 @@ services:
       - "443:443"
       - "6800:6800"
     volumes:
-      - /data:/data:rw
+      - ./data:/data:rw
     environment:
       - DOMAIN=:80
       # - SSL=true
-      - RPC_SECRET=HelloWorld
+      - RPC_SECRET=cbce2ea10827dd03575408d071679df6
       - ARIA2_USER=admin
-      - ARIA2_PWD=12345678
+      - ARIA2_PWD=nimda
       - ENABLE_AUTH=true
     restart: always
   bt-tracker:
@@ -23,7 +23,7 @@ services:
     image: hanxi/aria2-bt-tracker
     environment:
       - ARIA2_URL=http://aria2:6800/jsonrpc
-      - ARIA2_TOKEN=HelloWorld
+      - ARIA2_TOKEN=cbce2ea10827dd03575408d071679df6
       - TRACKER_URL=https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_all.txt
     links:
       - aria2:aria2
@@ -41,7 +41,7 @@ services:
       - MINIDLNA_FRIENDLY_NAME=MiniDLNA
       - MINIDLNA_INOTIFY=yes
       - MINIDLNA_NOTIFY_INTERVAL=3
-      - MINIDLNA_NETWORK_INTERFACE=eth1
+      - MINIDLNA_NETWORK_INTERFACE=eth0
     volumes:
       - /cache/minidlna:/var/lib/minidlna
       - /data:/media
